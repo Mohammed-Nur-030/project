@@ -9,8 +9,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import useAudioRecorder from '../../utils/recordAudio'
 
-// const base = 'https://chatbot-backend-beta.vercel.app'
-const base = 'http://localhost:3000'
+const base = 'http://chatbot-backend-beta.vercel.app'
 
 const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
 
