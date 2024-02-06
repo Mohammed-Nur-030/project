@@ -4,7 +4,7 @@ const openai = new OpenAI({
 })
 
 export async function chatCompletion({
-  model = 'gpt-4-0613',
+  model = 'gpt-3.5-turbo-0125',
   max_tokens = 2048,
   temperature = 0,
   messages,
@@ -32,7 +32,7 @@ export async function chatCompletion({
           functionsContent: null,
         }
       : {
-          content: "",
+          content: '',
           functionsContent: result.choices[0].message.tool_calls,
         }
   } catch (error) {

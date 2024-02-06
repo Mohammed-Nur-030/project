@@ -11,7 +11,7 @@ const SummarizeContext = async (newMsg) => {
   let chathistory = [...newMsg, prompt];
 
   const result = await chatCompletion({
-    model:'gpt-4',
+    model:'gpt-3',
     messages: chathistory,
   });
 

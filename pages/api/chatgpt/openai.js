@@ -30,7 +30,7 @@ let system = `آپ کی کردار نانی کے طور پر عمل کرنا ہ�
 
 `
 
-let model = 'gpt-4-0613'
+let model = 'gpt-3.5-turbo-0125'
 
 
 export const config = {
