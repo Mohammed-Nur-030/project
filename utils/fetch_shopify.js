@@ -7,8 +7,6 @@ import data from './data'
 const fetchBabyProducts = async (productType) => {
   const newProducts = []
 
-  console.log('producttype',productType)
-
   const collectionId = data.custom_collections.filter(
     (c) => c.title === productType
   )[0].id
@@ -39,8 +37,6 @@ const fetchBabyProducts = async (productType) => {
       console.error('Error fetching products:', error)
       return []
     })
-
-    console.log('fetchedProducts', fetchedProducts)
 
   return fetchedProducts
 }

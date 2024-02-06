@@ -3,8 +3,6 @@ const openai = new OpenAI({
   apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
 })
 
-import { functionsList } from './functionsList'
-
 export async function chatCompletion({
   model = 'gpt-4-0613',
   max_tokens = 2048,
@@ -27,15 +25,14 @@ export async function chatCompletion({
       throw new Error('No return error from chat')
     }
 
-    // console.log('result from ai', result)
-    const msg = result.choices[0].message
-    return msg.content
+    console.log('result from ai', result.choices[0].message)
+    return result.choices[0].message.content
       ? {
           content: result.choices[0].message.content,
           functionsContent: null,
         }
       : {
-          content: null,
+          content: "",
           functionsContent: result.choices[0].message.tool_calls,
         }
   } catch (error) {
