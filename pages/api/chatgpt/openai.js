@@ -32,6 +32,13 @@ let system = `آپ کی کردار نانی کے طور پر عمل کرنا ہ�
 
 let model = 'gpt-4-0613'
 
+
+export const config = {
+
+  maxDuration: 300,
+}
+
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     // Handle preflight request
@@ -56,8 +63,7 @@ export default async function handler(req, res) {
       await conversation.save()
 
       inputMessages.push({ role: 'system', content: system })
-      // let addMsg = ``
-      // convoSummary += addMsg
+     
     } else {
       conversation = await Conversation.findOne({ _id: conversationId })
       if (conversation) {
@@ -151,7 +157,12 @@ export default async function handler(req, res) {
       }
     }
 
-    currentMessage.push(finalMessage)
+    let finalMessageCpy = {
+      role: 'system',
+      content: finalMessage.content,
+    }
+
+    currentMessage.push(finalMessageCpy)
 
     const userMessage = {
       conversationId: conversation._id,
@@ -169,8 +180,7 @@ export default async function handler(req, res) {
       isCreatedByUser: false,
     }
 
-    // const summary = await SummarizeContext(currentMessage)
-    const summary = ''
+    const summary = await SummarizeContext(currentMessage)
 
     // Save the systemMessage as a document in the Message schema
     await new Message(systemMessage).save()
