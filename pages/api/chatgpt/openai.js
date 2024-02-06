@@ -32,7 +32,10 @@ import fetchBabyProducts from '../../../utils/fetch_shopify'
 
 let model = 'gpt-4-0613'
 
-export const maxDuration = 300;
+export const config = {
+
+  maxDuration: 300,
+}
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
