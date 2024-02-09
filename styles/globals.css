@@ -440,23 +440,35 @@ button {
   margin: auto;
  }
 }
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 576px) {
+  .justvoice__chat__size__open {
+    height: 95vh;
+  }
  .justvoice__widget{
   width: 95%;
   margin-left:4px ;
- }
- .justvoice__chat__x2b3f5h9c8{
-  width: 95%;
-  margin: 8px;
- }
- .justvoice__chat__main{
-  width: 95%;
 }
-.justvoice__chatBtn{
+.justvoice__chat__x2b3f5h9c8{
+   width: 95%;
+   margin: 8px;
+  }
+  .justvoice__chat__main{
+   width: 95%;
+  }
+  .justvoice__chatBtn{
   width: 60px;
  }
  .justvoice__chatBtn {
   right: 2px;
 }
 }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+
+     .justvoice__chat__size__open {
+      height: 95vh;
+      width: 60vw;
+    } 
+
+}  
 
