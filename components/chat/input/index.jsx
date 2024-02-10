@@ -9,19 +9,10 @@ const Input = ({
   isRecording,
 }) => {
   return (
-    <div className="justvoice__input">
-      <div className="justvoice__input__top__border"></div>
-      <div className="justvoice__input__textarea">
-        <textarea
-          name="enter_msg"
-          id="enter_msg"
-          value={prompt}
-          placeholder="Enter your message..."
-          onChange={(e) => setPrompt(e.target.value)}
-        ></textarea>
-      </div>
-      <div className="justvoice__bottom__layout">
-        <div className="justvoice__mic__button">
+    <div className="justvoice__input  ">
+      {/* <div className="justvoice__input__top__border"></div> */} 
+      <div className="justvoice__bottom__layout w-12 h-16">
+         <div className="justvoice__mic__button ">
           {isRecording ? (
             <div className="justvoice__mic__zindex" onClick={handleStopRecording} >
               <BsFillMicFill className="justvoice__mic__icon_recording" />
@@ -43,8 +34,18 @@ const Input = ({
               src="https://www.justautofy.com/assets/images/shared/logo-dark.svg"
               alt="img"
             />
-          </a> */}
-        </small>
+          </a> 
+          */}
+        </small> 
+      </div>
+      <div className="justvoice__input__textarea w-56">
+        <textarea
+          name="enter_msg"
+          id="enter_msg"
+          value={prompt}
+          placeholder="Enter your message..."
+          onChange={(e) => setPrompt(e.target.value)}
+        ></textarea>
       </div>
     </div>
   )

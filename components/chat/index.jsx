@@ -10,6 +10,8 @@ import Cookies from 'js-cookie'
 import useAudioRecorder from '../../utils/recordAudio'
 
 const base = 'https://chatbot-backend-beta.vercel.app'
+var viewportWidth;
+var viewportHeight;
 
 const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
 
@@ -275,7 +277,8 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
   return (
     <div className="justvoice__widget relative">
       {chatOpen && (
-        <div className="character-element absolute bottom-0 left-[-90%] ">
+        // <div className="character-element absolute bottom-0 left-[-90%] transition-all duration-500 ">
+        <div className="character-element absolute bottom-0 left-0 transform translate-x-[-90%] transition-transform duration-500 ">
           <img
             style={{
               width: '400px',
@@ -289,7 +292,7 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
       <div
         className={`justvoice__chatBtn ${
           chatOpen ? 'justvoice__chatBtn__open' : 'justvoice__chatBtn__close'
-        }`}
+        } `}
       >
         <ChatButton
           prompt={prompt}
@@ -304,22 +307,23 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
             ? 'justvoice__chat__size__open'
             : 'justvoice__chat__size__close'
         } justvoice__chat__main
-     
-        
         `}
+        
       >
         <Header toggleChat={toggleChat} />
 
-        <div className="justvoice__chat__x2b3f5h9c8 relative">
+        <div className="justvoice__chat__x2b3f5h9c8 relative ">
           <Body messages={messagesArray} />
         </div>
+       
         <Input
           prompt={prompt}
           setPrompt={setPrompt}
           handleStartRecording={handleStartRecording}
           handleStopRecording={handleStopRecording}
           isRecording={isRecording}
-        />
+          />
+        
       </div>
     </div>
   )

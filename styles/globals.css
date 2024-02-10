@@ -120,11 +120,12 @@ button {
 
 .justvoice__input {
   display: flex;
+  flex-direction: row;
   position: relative;
   z-index: 30;
   padding: 0.75rem;
   padding-top: 0;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #ffffff;
 }
 
@@ -163,6 +164,7 @@ button {
   height: 3rem;
   color: #ffffff;
   cursor: pointer;
+  /* background: #ff7043; */
 }
 .justvoice__mic__button:hover .justvoice__mic__button__bg {
   width: 100%;
@@ -431,3 +433,42 @@ button {
   border-radius: 4px;
   font-family: Arial, sans-serif;
 }
+
+@media only screen and (max-width: 660px) {
+ .character-element{
+  display: none;
+  margin: auto;
+ }
+}
+@media only screen and (max-width: 576px) {
+  .justvoice__chat__size__open {
+    height: 95vh;
+  }
+ .justvoice__widget{
+  width: 95%;
+  margin-left:4px ;
+}
+.justvoice__chat__x2b3f5h9c8{
+   width: 95%;
+   margin: 8px;
+  }
+  .justvoice__chat__main{
+   width: 95%;
+  }
+  .justvoice__chatBtn{
+  width: 60px;
+ }
+ .justvoice__chatBtn {
+  right: 2px;
+}
+}
+
+  @media (min-width: 768px) and (max-width: 991px) {
+
+     .justvoice__chat__size__open {
+      height: 95vh;
+      width: 60vw;
+    } 
+
+}  
+
