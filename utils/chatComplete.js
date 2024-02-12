@@ -20,6 +20,7 @@ export async function chatCompletion({
       tools: tools,
       tool_choice: tool_choice,
     })
+    console.log("result",result)
 
     if (!result.choices[0].message) {
       throw new Error('No return error from chat')

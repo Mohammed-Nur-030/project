@@ -41,14 +41,14 @@ button {
 }
 .justvoice__widget {
   position: fixed;
-  right: 16px;
+  right: 5px;
   bottom: 16px;
   z-index: 50;
 }
 .justvoice__chatBtn {
   position: absolute;
   z-index: 50;
-  right: -8px;
+  right: -1px;
 }
 .justvoice__chatBtn__open {
   bottom: 32px;
@@ -366,6 +366,7 @@ button {
   height: 200px;
   margin-top: 4px;
   margin-bottom: 4px;
+  border-radius: 12px 12px 0px 0px;
 }
 
 .justvoice_media_body {
@@ -441,26 +442,29 @@ button {
  }
 }
 @media only screen and (max-width: 576px) {
+  .justvoice__widget{
+    width: 95vw;
+    margin-right: 4px;
+  }
+ 
   .justvoice__chat__size__open {
     height: 95vh;
+    width: 100vw;
   }
- .justvoice__widget{
-  width: 95%;
-  margin-left:4px ;
-}
-.justvoice__chat__x2b3f5h9c8{
-   width: 95%;
-   margin: 8px;
+  .justvoice__chat__x2b3f5h9c8{
+    width: 95%;
+    margin: 8px;
+   
   }
   .justvoice__chat__main{
-   width: 95%;
+    width: 100%;
+    margin-right: 0px;
   }
   .justvoice__chatBtn{
-  width: 60px;
+    width: 60px;
+    left: 82%;
  }
- .justvoice__chatBtn {
-  right: 2px;
-}
+
 }
 
   @media (min-width: 768px) and (max-width: 991px) {
@@ -468,7 +472,11 @@ button {
      .justvoice__chat__size__open {
       height: 95vh;
       width: 60vw;
-    } 
+    }
+    .justvoice__chatBtn{
+      right: -1px;
+   }  
+  
 
 }  
 
