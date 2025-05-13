@@ -1,16 +1,77 @@
-import React from 'react'
-import ChatWidget from '../components/chat'
-
+import React from 'react';
+import ChatWidget from '../components/chat';
+import styles from '../styles/Home.module.css'; // Import scoped CSS module
+import Image from 'next/image';
 const Index = () => {
   return (
-    <div>
+    <div className={styles.main}>
+
+    <div className={styles.background}>
+      <div className={styles.box}></div>
+
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+ 
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+ 
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+ 
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+     
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+      <div className={styles.box}></div>
+
+       <div className={styles.overlayImage}>
+          <Image
+            src="/images/imp.png"
+            alt="Grandma Chatbot"
+            width={300}
+            height={300}
+            />
+        </div>
+       <div className={styles.overlayImage2}>
+          <Image
+            src="/images/1.png"
+            alt="Grandma Chatbot"
+            width={300}
+            height={300}
+            />
+        </div>
+       <div className={styles.overlayImage1}>
+          <Image
+            src="/images/2.png"
+            alt="Grandma Chatbot"
+            width={300}
+            height={300}
+            />
+        </div>
+      
       <ChatWidget
         siteURL={'AI'}
-        apiKey={'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'}
+        apiKey={process.env.NEXT_PUBLIC_OPENAI_API_KEY}
         lang={'english'}
-      />
+        />
     </div>
-  )
-}
+        </div>
+  );
+};
 
-export default Index
+export default Index;

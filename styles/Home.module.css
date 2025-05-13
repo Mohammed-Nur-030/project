@@ -1,0 +1,79 @@
+/* styles/Home.module.css */
+
+.background {
+  width: 150%;
+  height: 250%;
+ 
+  overflow: hidden;
+  background: linear-gradient(to bottom, #6e529d 0%, #d97b93 100%);
+}
+.main{
+    position: absolute;
+}
+
+/* Custom styled box */
+.box {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 10em;
+  height: 10em;
+  transform: rotate(45deg);
+  margin: 2em;
+  float: left;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+}
+.overlayImage {
+  z-index: 2;             /* above the boxes */
+  pointer-events: none;   /* if you still want clicks through to chat */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  position: fixed;
+    top: 230px;
+    left: 152px;
+    height: 18rem;
+    width: 18rem;
+      transform: scaleX(-1);
+
+}
+.overlayImage1 {
+  z-index: 2;             /* above the boxes */
+  pointer-events: none;   /* if you still want clicks through to chat */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  position: fixed;
+    top: 35px;
+    left: 8px;
+    height: 18rem;
+    width: 18rem;
+    transition: transform 0.3s ease, filter 0.3s ease;
+
+}
+.overlayImage2 {
+  z-index: 2;             /* above the boxes */
+  pointer-events: none;   /* if you still want clicks through to chat */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  position: fixed;
+    top: 35px;
+    left: 280px;
+    height: 18rem;
+    width: 18rem;
+      transition: transform 0.3s ease, filter 0.3s ease;
+
+
+}
+.imageHover {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.imageHover:hover {
+  transform: scale(1.1); /* zoom effect */
+  filter: brightness(1.2); /* slightly brighter */
+}
+.overlayImage1:hover {
+  transform: scale(1.1); /* zoom effect */
+  filter: brightness(1.2); /* slightly brighter */
+}

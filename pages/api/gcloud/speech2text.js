@@ -94,7 +94,7 @@ export default async function handler(req, res) {
     const config = {
       encoding: 'LINEAR16',
       sampleRateHertz: targetSampleRate,
-      languageCode: 'EN-IN',
+      languageCode: 'UR-IN',
     }
 
     const audio = {
