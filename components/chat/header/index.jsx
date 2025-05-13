@@ -18,8 +18,8 @@ const Header = (props) => {
           />
         </div>
         <div className="justvoice__chat__bot__name">
-          <div className="justvoice__chat__bot__name_p">NANI.PK</div>
-          <small>Apki madadgar Nani</small>
+          <div className="justvoice__chat__bot__name_p">AI</div>
+          <small>Your Personal Assistant</small>
         </div>
       </div>
       <div

@@ -5,7 +5,7 @@ const SummarizeContext = async (newMsg) => {
   const prompt = {
     role: 'system',
     content:
-      'کام ایک جملے میں گفتگو کے سیاق و سباق کا خلاصہ کرنا ہے یا اگر ضروری ہو تو آپ اسے بڑھا سکتے ہیں۔ آپ چیٹ کی سرگزشت اور نئے پیغام کو بطور ان پٹ استعمال کر سکتے ہیں۔ اہم موضوع اور گفتگو کی سب سے متعلقہ تفصیلات کو حاصل کرنے کی کوشش کریں اور اگر ضروری ہو تو موجودہ پیغام کے ساتھ خلاصہ کو بہتر بنائیں ',
+      'The task is to summarize the context of the conversation in one sentence or you can extend it if necessary. You can use the chat history and the new message as input. Try to get the most relevant details of the main topic and conversation and refine the summary with the current message if necessary',
   }
 
   let chathistory = [...newMsg, prompt];

@@ -6,40 +6,16 @@ import SummarizeContext from '../../../utils/summarizeContext'
 import fetchBabyProducts from '../../../utils/fetch_shopify'
 import { functionsList } from '../../../utils/functionsList'
 
-let system = `آپ کی کردار نانی کے طور پر عمل کرنا ہے اور آپ مندرجہ ذیل کام کر سکتی ہیں 
---------
-زرخیزی کی دیکھ بھال: بچے کی زرخیزی کا خیال رکھنے میں میری مدد کر سکتی ہے۔
-منحرف مشورہ: مختلف مسائل کے حل کے لیے آپ کو مشورہ دے سکتا ہے۔
-مسئلہ حل کرنا: میں آپ کے مسائل حل کر سکتا ہوں اور آپ کے تمام مسائل میں آپ کی مدد کر سکتا ہوں۔
-طبی معلومات: آپ کا کام بچے کی عمر، بیماری سے متعلق مسائل اور کچھ اضافی معلومات طلب کرنا ہے تاکہ مناسب مشورہ دیا جاسکے، اس مسئلے کے تمام گھریلو علاج بتائیں پھر احتیاط کریں کہ بہتر ہے کہ ڈاکٹر کے پاس جائیں۔
-کھانے کی ترتیبات: بچے کے لیے عمر کے لحاظ سے مناسب خوراک کا انتخاب کرنے میں مدد کر سکتی ہے۔
-بچوں کا کھیل: بچے کے لیے موزوں کھیل تلاش کرنے میں مدد کر سکتا ہے۔
-نیند سے نجات: بچے کو بہتر سونے میں مدد مل سکتی ہے۔
-ذہن سازی: بچے کے لیے صحت مند ماحول کا باعث بن سکتا ہے۔
-تعلیمی کہانیاں: بچوں کے لیے اخلاقی کہانیاں فراہم کر سکتی ہیں۔
-مذہبی رہنمائی: بچوں کی اخلاقی اور مذہبی تعلیم میں مدد کر سکتی ہے۔
-ویکسینیشن کی یاددہانی: بچے کو ویکسینیشن کی تاریخیں یاد دلانے سے مدد مل سکتی ہے۔
-احتیاطی تدابیر: بچے کی حفاظت کے لیے اہم اقدامات کی رہنمائی کر سکتے ہیں۔
-کپڑے کی مدد: بچے کے لباس کے انتظامات کی رہنمائی کر سکتی ہے۔
-"اہم نوٹ" : جواب دیتے وقت محتاط رہیں اگر ضرورت ہو تو بچے کی عمر یا دیگر خصوصیات بھی پوچھیں
+let system = `you are an intelligent chatbot`
 
--------
-
-"" نوٹ: آپ کو صرف مختصر جوابات فراہم کرنا چاہ that جو 20 الفاظ سے کم ہو ، سختی سے اس سے بالاتر نہ ہوں ""
-
-`
-
-let model = 'gpt-3.5-turbo-0125'
-
+let model = ''
 
 export const config = {
   maxDuration: 300,
 }
 
-
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
-    // Handle preflight request
     res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Access-Control-Allow-Methods', 'POST')
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
@@ -61,7 +37,6 @@ export default async function handler(req, res) {
       await conversation.save()
 
       inputMessages.push({ role: 'system', content: system })
-      
     } else {
       inputMessages.push({ role: 'system', content: system })
       conversation = await Conversation.findOne({ _id: conversationId })
@@ -86,7 +61,7 @@ export default async function handler(req, res) {
         role: message.isCreatedByUser ? 'user' : 'system',
         content: message.text,
       }))
-      inputMessages=[...inputMessages,...prevMessages]
+      inputMessages = [...inputMessages, ...prevMessages]
     }
 
     let result = {}
@@ -97,9 +72,9 @@ export default async function handler(req, res) {
         content: textInput,
       },
     ]
-console.log("****************************************************")
-console.log("InputMessages:",inputMessages)
-console.log("****************************************************")
+    console.log("****************************************************")
+    console.log("InputMessages:", inputMessages)
+    console.log("****************************************************")
     try {
       result = await chatCompletion({
         messages: inputMessages,
@@ -107,68 +82,16 @@ console.log("****************************************************")
         tools: functionsList,
         model,
         tool_choice: 'auto',
-      })
+      });
+      console.log("result --:", result); // This should execute after chatCompletion finishes
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  
-    let finalMessage = {
-      role: 'system',
-      content: result?.content,
-    }
-console.log("result:",result)
-    if (result.functionsContent) {
-      // console.log('functions calls')
-      // console.log('finalMessage', result.functionsContent[0])
-
-      for (let tool of result.functionsContent) {
-        if (tool.function.name === 'fetchBabyProducts') {
-          // console.log('result funcs', tool)
-          let funcName = tool.function.name
-          // console.log('tool', funcName)
-          let funcarguments = JSON.parse(tool.function.arguments)
-          let productType = funcarguments.productType
-          // console.log('productType 1', productType)
-          if (funcName === 'fetchBabyProducts') {
-            try {
-              // console.log('productType', productType)
-              let funcResult = await fetchBabyProducts(productType)
-              funcResult = funcarguments.limit
-                ? funcResult.slice(0, funcarguments.limit)
-                : funcResult.slice(0, 3)
-              finalMessage = {
-                role: 'system',
-                funcResult: funcResult,
-                content: '',
-              }
-            } catch (error) {
-              // console.log('error from fetchProducts', error)
-              finalMessage = {
-                role: 'system',
-                funcResult: [
-                  {
-                    title: '',
-                    image: '',
-                  },
-                ],
-                content: '',
-              }
-            }
-          }
-        }
-      }
-    }
-
-    let finalMessageCpy = {
-      role: 'system',
-      content: finalMessage.content,
-    }
-
-   
-
-    currentMessage.push(finalMessageCpy)
-
     
+  
+  
+
+ 
     const userMessage = {
       conversationId: conversation._id,
       model,
@@ -185,16 +108,13 @@ console.log("result:",result)
       isCreatedByUser: false,
     }
 
-
     const summary = await SummarizeContext(currentMessage)
 
-    // Save the systemMessage as a document in the Message schema
     await new Message(systemMessage).save()
 
-    // Send the result as the response
     await db.disconnect()
     return res.status(200).json({
-      result: finalMessage,
+      result: result,
       summary: summary,
       convoId: conversation?._id,
       currentMsg: currentMessage,

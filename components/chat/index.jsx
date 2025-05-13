@@ -18,32 +18,8 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
 
   const [verified, setVerified] = useState(true)
 
-  // useEffect(() => {
-  //   const url = 'api-justautofy.vercel.app' + '/api/verify'
-  //   const checkAuth = async () => {
-  //     const owner = await fetch(url, {
-  //       method: 'POST',
-  //       body: JSON.stringify({
-  //         apiKey: apiKey,
-  //         siteURL: window.location.host,
-  //         productName: 'voicebot',
-  //         email: mail,
-  //       }),
-  //     })
 
-  //     if (owner.status === 200) {
-  //       setVerified(true)
-  //     }
-  //   }
-  //   checkAuth()
-  // }, [])
-
-  let urdu =
-    'میں یہاں آپ کے سوالات میں مدد کرنے کے لئے نانی ڈاٹ پی کے اے آئی اسسٹنٹ ہوں. آپ مجھ سے ہماری مصنوعات اور خدمات کے بارے میں کچھ پوچھ سکتے ہیں.'
-  let content =
-    lang === 'urdu'
-      ? urdu
-      : `I am an AI Assistant of ${siteURL}  here to help you with your queries. You can ask me anything about our products and services.`
+  let content =`I am an AI Assistant of ${siteURL}  here to help you with your queries. You can ask me anything about our products and services.`
   let defaultContextSchema = {
     role: 'system',
     content: content,
@@ -97,8 +73,8 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
       // formData.append('model', 'whisper-1')
       formData.append('language', 'en')
 
-      let suffixURL =
-        lang == 'urdu' ? '/api/gcloud/speech2text' : '/api/voicechat'
+      let suffixURL = '/api/gcloud/speech2text'
+      // lang == 'urdu' ? '/api/gcloud/speech2text' : '/api/voicechat'
       let voiceapi = base + suffixURL
       // let voiceapi = newbase + '/api/gcloud/speech2text'
 
@@ -204,8 +180,10 @@ const ChatWidget = ({ siteURL, lang, apiKey, mail }) => {
         input: obj,
         summary: aisummary,
       })
+      console.log("RESPONSE FROM INDEX: ",response)
 
       let { result, summary, convoId } = await response.data
+      console.log("YAAA got response")
       if (obj.conversationId.length < 5) {
         Cookies.set('convoId', convoId)
       }

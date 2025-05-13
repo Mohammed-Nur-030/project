@@ -94,7 +94,7 @@ export default async function handler(req, res) {
     const config = {
       encoding: 'LINEAR16',
       sampleRateHertz: targetSampleRate,
-      languageCode: 'ur-IN',
+      languageCode: 'EN-IN',
     }
 
     const audio = {
@@ -112,13 +112,13 @@ export default async function handler(req, res) {
     const endpointUrl = `https://speech.googleapis.com/v1/speech:recognize?key=${apiKey}`
 
     // Send a POST request to the endpoint URL with the JSON object in the body
-    const response = await axios.post(endpointUrl, request) // Use axios instead of requests
+    const response = await axios.post(endpointUrl, request) 
+    console.log(response)// Use axios instead of requests
 
     // Get the transcription from the response
     const text = response.data.results // Use response.data instead of response.json()
       .map((result) => result.alternatives[0].transcript)
       .join('\n')
-
     return res.json({ text })
   } catch (error) {
     return res.status(500).json({ error: error })

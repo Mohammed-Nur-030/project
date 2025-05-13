@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const baseUrl = 'https://api.elevenlabs.io/v1/text-to-speech';
     const headers = {
       'Content-Type': 'application/json',
-      'xi-api-key': '97ea84f39840ab0ac448400c4f33e9a1',
+      'xi-api-key': 'sk_e1a9064333a426547fb809ca032cdc0d45ebbf291ebcc29a',
     }
 
     const reqbody = JSON.parse(req.body);
